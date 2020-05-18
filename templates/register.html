@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+
+    <form method="post" class="border border-light mt-5">
+    <div class="bg-dark text-center login-border p-2">Django Register</div>
+
+        <div class="form-row mt-3">
+    <div class="form-group col-md-6">
+      <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+      {{ form.first_name }}
+    </div>
+    <div class="form-group col-md-6">
+      <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+      {{ form.last_name }}
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+      {{ form.email }}
+    </div>
+    <div class="form-group col-md-6">
+      <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+      {{ form.password }}
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="{{ form.mobile.id_for_label }}">{{ form.mobile.label }}</label>
+    {{ form.mobile }}
+  </div>
+  <input type="submit" class="btn btn-block btn-outline-dark" value="Register">
+</form>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<table class="table table-sm mt-5">
+  <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Mobile</th>
+        <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+      {% if data %}
+      <th scope="row">{{ data.pk }}</th>
+      <td>{{ data.username }}</td>
+      <td>{{ data.first_name }}</td>
+      <td>{{ data.last_name }}</td>
+      <td>{{ data.email }}</td>
+      <td>{{ data.mobile }}</td>
+      <td>
+          <a href="{% url 'edit_profile' pk=data.pk %}"><span class="btn btn-warning">Edit</span></a>
+          <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#delete_data">Delete</a>
+      </td>
+      {% endif %}
+  </tr>
+  </tbody>
+</table>
+    <!--delete data model-->
+    {% if data %}
+<div class="modal fade" id="delete_data" tabindex="-1" role="dialog" aria-labelledby="model_label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="model_label">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="{% url 'delete_data' pk=data.pk %}">
+        <div class="form-group">
+            <label for="password" class="sr-only">Password</label>
+            <input id="password" type="password" name="password" class="form-control" placeholder="Password" required>
+        </div>
+            <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" value="Delete Data">
+      </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endif %}
+</div>
+{% endblock %}
